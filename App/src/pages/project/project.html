@@ -61,12 +61,10 @@
             </ion-avatar>
             <span (click)="openApplication(application)"> {{application.author.firstname}} {{application.author.lastname}}
             </span>
-            <button *ngIf="application.status == 1" ion-button item-end icon-end (click)="changeApplicationStatus(application.id, application.author.id, 2)">
-              Annehmen
+            <button class="application-button" *ngIf="application.status == 1" ion-button item-end icon-end (click)="changeApplicationStatus(application.id, application.author.id, 2)">
               <ion-icon name="checkmark"></ion-icon>
             </button>
-            <button *ngIf="application.status == 1" ion-button item-end icon-end color="danger" (click)="changeApplicationStatus(application.id, application.author.id, 0)">
-              Ablehnen
+            <button class="application-button" *ngIf="application.status == 1" ion-button item-end icon-end color="danger" (click)="changeApplicationStatus(application.id, application.author.id, 0)">
               <ion-icon name="close"></ion-icon>
             </button>
             <button *ngIf="application.status == 2" ion-button item-end icon-end disabled>
@@ -77,7 +75,6 @@
               Abgelehnt
               <ion-icon name="close"></ion-icon>
             </button>
-
           </ion-item>
         </ion-list>
         <ion-item *ngIf="project?.applications?.length == 0">
