@@ -1,0 +1,58 @@
+page-settings {
+
+    .clear{
+        color: black;
+        text-transform: none;
+        font-size: 1.6rem;
+        font-weight: normal;
+       // border-bottom: 1px solid #dedede; 
+    }
+
+    .button{
+        padding: 0;
+    }
+
+    .settings-button-inner{
+        width: 100%;
+        border-bottom: 1px solid #dedede; 
+    }
+
+    .settings-button-outer{
+    padding-left: 16px;
+    }
+        
+
+    .avatar {
+        width: 80px;
+        border-radius: 40px;
+      }
+      
+      .header_content {
+        position: relative;   
+        bottom: 0;
+        padding: 16px;
+        padding-bottom: 30px;
+        text-align: center;
+      }
+      
+      .profile_header {
+        height: 150px;
+        position: relative;
+        text-align: center;
+      }
+      
+      .header_username {
+        color: black;
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+      }
+      
+      .email {
+        color: black;
+        font-size: 14px;
+        margin: 0;
+        text-align: center;     
+      }
+
+}

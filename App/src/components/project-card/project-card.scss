@@ -1,0 +1,30 @@
+project-card {
+  .projectCard {
+    font-size: 12px !important;
+  }
+  .button-inner {
+    color: black;
+  }
+  h2 {
+    font-weight: bold !important; //color: color($colors, primary)!important;
+    color: white!important;
+  }
+  .card-header {
+    background-color: color($colors, primary);
+    padding-bottom: 0;
+    margin-bottom: 0.5em;
+  }
+  .item {
+    padding: 0;
+  }
+  .col {
+    padding: 0!important; //margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .noPadding {
+    padding: 0;
+  }
+  .noPaddingBottom {
+    padding-bottom: 0;
+  }
+}

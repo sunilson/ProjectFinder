@@ -1,0 +1,80 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "branch-cordova-sdk": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-clipboard": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-googlemaps": {
+      "API_KEY_FOR_ANDROID": "AIzaSyDMF-G1Bj9ZO9gJh-ey5cbVzHJwKRDbi-M",
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-googleplus": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "cordova-support-google-services": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "pro5.projectfinder"
+    }
+  }
+}

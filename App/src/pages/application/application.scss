@@ -1,0 +1,12 @@
+page-application {
+  .appText {
+    border: 1px solid color($colors, light);
+    height: 50%;
+  }
+  .errorMessage {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-left: 16px;
+    color: #f53d3d;
+  }
+}

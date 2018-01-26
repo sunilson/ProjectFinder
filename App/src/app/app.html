@@ -1,0 +1,27 @@
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <div class="drawer_header">
+      <div class="header_content">
+        <img class="header_avatar" [src]="user?.profilepicture">
+        <p class="header_username">{{user?.firstname}} {{user?.lastname}}</p>
+        <p class="header_email">{{user?.email}}</p>
+      </div>
+    </div>
+    <ion-list>
+      <button ion-item menuClose (click)="app.getRootNav().push('SettingsPage')">
+        <ion-icon name="settings" item-start></ion-icon>
+        <h2>Einstellungen</h2>
+      </button>
+      <button ion-item menuClose (click)="logOut()">
+        <ion-icon name="exit" item-start></ion-icon>
+        <h2>Ausloggen</h2>
+      </button>
+      <button ion-item menuClose (click)="openImpressum()">
+        <ion-icon name="help-circle" item-start></ion-icon>
+        <h2>Impressum</h2>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

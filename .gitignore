@@ -1,0 +1,9 @@
+/Server/config.js
+App/www/build/vendor.js
+App/www/build/main.css
+App/www/build/main.js
+App/www/build/main.js.map
+App/www/build/vendor.js
+App/www/build/vendor.js.map
+/Server/serviceAccountKey.json
+App/google-services.json

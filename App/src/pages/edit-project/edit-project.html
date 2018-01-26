@@ -1,0 +1,31 @@
+<!--
+  Generated template for the EditProjectPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit {{project.title}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="navCtrl.pop()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="editProjectForm" (ngSubmit)="editProject()">
+    <ion-item>
+      <ion-input type="text" id="projectname" [value]="project?.title" formControlName="projectname" placeholder="Projectname"
+        clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea autosize id="description" [value]="project?.description" formControlName="description" placeholder="Description"
+        clearInput></ion-textarea>
+    </ion-item>
+    <button class="submitButton" ion-button type="submit" full margin-top [disabled]="!editProjectForm.valid">Submit changes</button>
+  </form>
+</ion-content>

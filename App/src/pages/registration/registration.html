@@ -1,0 +1,59 @@
+<!--
+  Generated template for the RegistrationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registration</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="myForm" (ngSubmit)="submitRegistration()">
+    <ion-item>
+      <ion-input type="text" id="firstname" formControlName="firstname" placeholder="Vorname" clearInput></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.firstname.hasError('required') && (myForm.get('firstname').dirty || myForm.get('firstname').touched)">Vorname darf nicht leer sein!</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.firstname.hasError('maxlength') && (myForm.get('firstname').dirty || myForm.get('firstname').touched)">Vorname ist zu lange!</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.firstname.hasError('invalidName') && (myForm.get('firstname').dirty || myForm.get('firstname').touched)">Vorname enthält ungültige Zeichen!</div>
+
+    <ion-item>
+      <ion-input type="text" id="lastname" formControlName="lastname" placeholder="Nachname" clearInput></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.lastname.hasError('required') && (myForm.get('lastname').dirty || myForm.get('lastname').touched)">Nachname darf nicht leer sein</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.lastname.hasError('maxlength') && (myForm.get('lastname').dirty || myForm.get('lastname').touched)">Nachname darf max 15 Zeichen beinhalten</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.lastname.hasError('invalidName') && (myForm.get('lastname').dirty || myForm.get('lastname').touched)">Nachname enthält ungültige Zeichen!</div>
+
+    <ion-item>
+      <ion-input type="text" id="username" formControlName="username" placeholder="Benutzername" clearInput></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.username.hasError('required') && (myForm.get('username').dirty || myForm.get('username').touched)">Username darf nicht leer sein</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.username.hasError('maxlength') && (myForm.get('username').dirty || myForm.get('username').touched)">Username darf max 15 Zeichen beinhalten</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.username.hasError('minlength') && (myForm.get('username').dirty || myForm.get('username').touched)">Username muss mind 5 Zeichen beinhalten</div>
+    <ion-item>
+      <ion-input type="email" id="email" formControlName="email" placeholder="Email" clearInput></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.email.hasError('email') && (myForm.get('email').dirty || myForm.get('email').touched)">Ungültige Mailadresse</div>
+    <ion-item>
+      <ion-input type="password" id="password" formControlName="password" placeholder="Passwort" clearInput></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.password.hasError('minlength') && (myForm.get('password').dirty || myForm.get('password').touched)">Passwort muss 5 Zeichen lang sein</div>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.password.hasError('maxlength') && (myForm.get('password').dirty || myForm.get('password').touched)">Passwort darf maximal 15 Zeichen lang sein</div>
+    <ion-item>
+      <ion-input type="password" id="repeatPassword" formControlName="repeatPassword" placeholder="Passwort wiederholen" clearInput></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.hasError('mismatchedPasswords') && (myForm.get('repeatPassword').dirty || myForm.get('repeatPassword').touched)">Passwort muss gleich sein</div>
+    <button (click)="addSkill()" class="submitButton" ion-button type="button" outline block icon-right>Add skills
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-badge [@tagAnimation] class="tag" *ngFor="let tag of tags" (click)="removeTag(tag)">{{tag?.title}} X
+    </ion-badge>
+    <button class="submitButton" ion-button type="submit" full margin-top [disabled]="!myForm.valid || !tags || tags.length == 0">Registrieren</button>
+  </form>
+</ion-content>

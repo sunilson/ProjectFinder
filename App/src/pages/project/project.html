@@ -1,0 +1,269 @@
+<!--
+  Generated template for the ProjectPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>
+      Project Finder
+    </ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only *ngIf="(user && project) && (user.id === project.author.id)" (click)="edit()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="(user && project) && (user.id === project.author.id)" (click)="delete()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="(user && project) && (user.id !== project.author.id) && projectService.isMember(user, project)"
+        (click)="leave()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="share()">
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="content-container">
+  <ion-refresher (ionRefresh)="refreshProject($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="project">
+    <div id="metaData">
+      <div id="metaData-inner">
+        <div id="title">
+          <h1>
+            <span style="padding-right: 5px" *ngIf="project && project?.status != 0">[Closed]</span>{{project?.title}}</h1>
+        </div>
+        <div class="marginTopSmall">
+          <ion-badge *ngFor="let tag of project?.tags" class="tag" color="secondary">{{tag?.title}}</ion-badge>
+        </div>
+        <div class="marginTop">
+          <button *ngIf="user?.id != project?.author.id" [disabled]="application || user?.id == project?.author.id || project?.status != 0"
+            color="white" (click)="apply()" ion-button outline>Apply now</button>
+          <button *ngIf="user?.id == project?.author.id" [disabled]="project?.status != 0" color="white" (click)="closeProject()" ion-button
+            outline>Close project</button>
+        </div>
+      </div>
+    </div>
+    <div class="margin-top main-content" style="padding: 10px" [@enterAnimation]>
+      <ion-card *ngIf="user?.id == project?.author.id">
+        <ion-card-header>
+          Bewerbungen
+        </ion-card-header>
+        <ion-list *ngIf="project?.applications?.length > 0">
+          <ion-item *ngFor="let application of project?.applications">
+            <ion-avatar item-start>
+              <img [src]="application.author.profilepicture">
+            </ion-avatar>
+            <span (click)="openApplication(application)"> {{application.author.firstname}} {{application.author.lastname}}
+            </span>
+            <button *ngIf="application.status == 1" ion-button item-end icon-end (click)="changeApplicationStatus(application.id, application.author.id, 2)">
+              Annehmen
+              <ion-icon name="checkmark"></ion-icon>
+            </button>
+            <button *ngIf="application.status == 1" ion-button item-end icon-end color="danger" (click)="changeApplicationStatus(application.id, application.author.id, 0)">
+              Ablehnen
+              <ion-icon name="close"></ion-icon>
+            </button>
+            <button *ngIf="application.status == 2" ion-button item-end icon-end disabled>
+              Angenommen
+              <ion-icon name="checkmark"></ion-icon>
+            </button>
+            <button *ngIf="application.status == 0" ion-button item-end icon-end color="danger" disabled>
+              Abgelehnt
+              <ion-icon name="close"></ion-icon>
+            </button>
+
+          </ion-item>
+        </ion-list>
+        <ion-item *ngIf="project?.applications?.length == 0">
+          Keine offenen Bewerbungen derzeit
+        </ion-item>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Autor
+        </ion-card-header>
+        <ion-item>
+          <ion-avatar *ngIf="project?.author?.profilepicture" item-start>
+            <img [src]="project?.author.profilepicture">
+          </ion-avatar>
+          <ion-avatar *ngIf="!project?.author?.profilepicture" item-start>
+            <img src="http://www.planystech.com/wp-content/uploads/2017/03/profile-placeholder.jpg">
+          </ion-avatar>
+          <h2>{{project?.author.firstname}} {{project?.author.lastname}}</h2>
+          <p>{{project?.author.email}}</p>
+        </ion-item>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Info
+        </ion-card-header>
+        <ion-list>
+          <ion-item>
+            <ion-icon name="calendar" item-start large></ion-icon>
+            <h2>Startet am {{startDate}}</h2>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer" item-start large></ion-icon>
+            <h2>Dauert ca. {{duration}}
+              <span *ngIf="duration > 1">Wochen</span>
+              <span *ngIf="duration <= 1">Woche</span>
+            </h2>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="cash" item-start></ion-icon>
+            <span *ngIf="!project?.payment?.paid">Keine </span>Bezahlung
+            <span *ngIf="project?.payment?.paid">: {{project?.payment.amount}} €</span>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="people" item-start></ion-icon>
+            {{getMemberAmount()}} von {{project?.maxMemberAmount}} Mitgliedern
+          </ion-item>
+          <ion-item *ngIf="project?.location">
+            <ion-icon name="pin" item-start></ion-icon>
+            In {{project?.location?.name}}
+          </ion-item>
+
+        </ion-list>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Beschreibung
+        </ion-card-header>
+        <ion-card-content>
+          <p *ngIf="project?.description">
+            {{project?.description}}
+          </p>
+          <p *ngIf="!project?.description">
+            No description set for this project...
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="(project?.members && project?.members.length > 0) || project.author.id == user.id">
+        <ion-card-header>
+          Projektmitglieder
+        </ion-card-header>
+        <ion-list *ngIf="project?.members && project?.members.length > 0">
+          <ion-item *ngFor="let member of project?.members">
+            <ion-avatar item-start>
+              <img [src]="member.profilepicture">
+            </ion-avatar>
+            {{member.firstname}} {{member.lastname}}
+            <button *ngIf="user.id === project.author.id && member.id !== project.author.id" ion-button item-end icon-end color="danger"
+              (click)="removeMember(member)">
+              Entfernen
+              <ion-icon name="close"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-list>
+        <ion-item *ngIf="!project?.members || project?.members.length == 0">
+          Noch keine Mitglieder
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="user?.id != project?.author.id && application" (click)="openApplication()">
+        <ion-card-header>
+          Deine Bewerbung
+        </ion-card-header>
+        <ion-card-content [ngSwitch]="application?.status">
+          <ion-list>
+            <ion-item>
+              <ion-icon *ngIf="application.status == 0" name="close" item-start></ion-icon>
+              <ion-icon *ngIf="application.status == 1" name="help" item-start></ion-icon>
+              <ion-icon *ngIf="application.status == 2" name="checkmark" item-start></ion-icon>
+              <span *ngSwitchCase="1">
+                Bewertung durch Projekt Autor noch ausstehend
+              </span>
+              <span *ngSwitchCase="2">
+                Bewerbung wurde angenommen. Glückwunsch!
+              </span>
+              <span *ngSwitchCase="0">
+                Bewerbung wurde leider abgelehnt :/
+              </span>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="project?.location">
+        <div #map id="map"></div>
+      </ion-card>
+
+      <ion-card *ngIf="projectService.isMember(user, project) && project?.status == 0">
+        <ion-card-header>
+          Chat
+        </ion-card-header>
+        <ion-content #chat style="height: 300px" direction="y">
+          <ion-list>
+            <ion-item *ngIf="!chatMessages || chatMessages.length == 0">
+              Noch keine Chat Nachrichten!
+            </ion-item>
+            <ion-item *ngFor="let message of chatMessages">
+              <ion-avatar item-start>
+                <img [src]="message.author.profilepicture">
+              </ion-avatar>
+              <ion-grid>
+                <ion-row class="chatMessage">
+                  <ion-col>
+                    {{message.message}}
+                  </ion-col>
+                </ion-row>
+                <ion-row class="chatDate">
+                  <ion-col>
+                    Von {{message.author.firstname}} am {{message.sent.getDay() + "." + message.sent.getMonth() + "." + message.sent.getFullYear()}}
+                    um {{message.sent.getHours() + ":" + message.sent.getMinutes()}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+        <ion-item class="inputField">
+          <ion-input #chatInput type="text" maxlength="999" placeholder="Enter message"></ion-input>
+          <button [disabled]="chatDisabled" (click)="sendMessage()" ion-button item-right outline icon-right>Submit
+            <ion-icon style="color: #fd9a18 !important" name="send"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-card>
+
+      <!--
+      <ion-card>
+        <ion-card-header>
+          Zeitraum
+        </ion-card-header>
+        <ion-grid style="padding: 0">
+          <ion-row>
+            <ion-col style="padding: 0">
+              <ion-item>
+                <ion-icon name="calendar" item-start large></ion-icon>
+                <h2>Startet am</h2>
+                <p>{{startDate}}</p>
+              </ion-item>
+            </ion-col>
+            <ion-col style="padding: 0">
+              <ion-item>
+                <ion-icon name="timer" item-start large></ion-icon>
+                <h2>Dauert ca</h2>
+                <p>{{duration}}
+                  <span *ngIf="duration > 1">Wochen</span>
+                  <span *ngIf="duration <= 1">Woche</span>
+                </p>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    -->
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-content padding>
+  <div>
+    <img width="100" height="100" src="assets/imgs/icon.png">
+  </div>
+
+  <h1>Project Finder</h1>
+
+  <form [formGroup]="myForm" (ngSubmit)="submitLogin()">
+    <ion-item>
+      <ion-input type="email" id="username" formControlName="username" [value]="username" placeholder="Benutzername"></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.username.hasError('required') && (myForm.get('username').dirty || myForm.get('username').touched || submitAttempt)">Username darf nicht leer sein!</div>
+
+    <ion-item>
+      <ion-input type="password" id="password" formControlName="password" placeholder="Passwort"></ion-input>
+    </ion-item>
+    <div class="errorMessage" [@enterAnimation] *ngIf="myForm.controls.password.hasError('required') && (myForm.get('password').dirty || myForm.get('password').touched || submitAttempt)">Passwort darf nicht leer sein!</div>
+    <button type="submit" class="buttonMargin" ion-button full>Login</button>
+  </form>
+  <button ion-button full margin-top (click)="googleLogin()">
+    <img class="googleIcon" src="assets/imgs/logo-google-plus_ss.png"> Login mit Google Account
+  </button>
+  <div class="center">
+    <button ion-button clear (click)="openRegistration()">Jetzt registrieren</button>
+    <button ion-button clear (click)="openForgotPassword()">Passwort vergessen</button>
+  </div>
+</ion-content>

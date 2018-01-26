@@ -1,0 +1,66 @@
+page-project {
+  h6 {
+    color: color($colors, primary);
+  }
+  .marginTop {
+    margin-top: 20px;
+  }
+  .marginTopSmall {
+    margin-top: 20px;
+  }
+  #metaData-inner {
+    //padding-top: 20px;
+  }
+  #map {
+    width: 100%;
+    height: 200px;
+  }
+  #metaData {
+    height: 200px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color($colors, primary);
+  }
+  .content-container {
+    background: color($colors, list_background);
+  }
+  .main-content {
+    padding-top: 10px;
+  }
+  #author {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  #authorName {
+    font-size: 18px;
+  }
+  #title {
+    padding: 0;
+    margin: 0;
+    color: white;
+  }
+  #title h1 {
+    padding: 0;
+    margin: 0;
+  }
+  #profilePicture {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+  }
+  .chatDate {
+    font-size: 12px;
+  }
+  .chatMessage {
+    font-size: 16px;
+    white-space: normal;
+  }
+  .inputField {
+    border-top: 1px solid #ededed;
+  }
+}

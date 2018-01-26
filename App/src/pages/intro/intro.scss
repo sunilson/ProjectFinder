@@ -1,0 +1,24 @@
+page-intro {  
+    
+    h1{
+        color: color($colors, light);
+    }
+    
+    p{
+        color: color($colors, light);
+    }
+        
+    ion-slide {
+        background-color: color($colors, primary);
+    }
+        
+    ion-slide img {
+        height: 70vh !important;
+        width: auto !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: color($colors, light);
+    }      
+       
+}

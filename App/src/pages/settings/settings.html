@@ -1,0 +1,48 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Einstellungen</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="profile_header">
+    <div class="header_content">
+      <img class="avatar" [src]="user?.profilepicture">
+      <p class="header_username">{{user?.firstname}} {{user?.lastname}}</p>
+      <p class="email">{{user?.email}}</p>
+    </div>
+  </div>
+  <ion-item>
+    <ion-label>Push Benachrichtigungen erlauben</ion-label>
+    <ion-toggle [(ngModel)]="!notification" (ionChange)="toggleChanged($event, 'notification')"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Standortzugriff erlauben</ion-label>
+    <ion-toggle [(ngModel)]="!location" (ionChange)="toggleChanged($event, 'location')"></ion-toggle>
+  </ion-item>
+  <button ion-item (click)="editProfilePicture()">
+    Profilbild bearbeiten
+  </button>
+  <button ion-item (click)="editUserTags()">
+    Skills bearbeiten
+    <div>
+      <ion-badge *ngFor="let tag of user?.tags" class="tag" color="secondary">{{tag?.title}}</ion-badge>
+      <ion-badge *ngIf="user?.tags.length == 0" class="tag" color="secondary">Keine Skills</ion-badge>
+    </div>
+  </button>
+  <button ion-item (click)="openChangePassword()">
+    Passwort ändern
+  </button>
+  <button ion-item disabled (click)="openDeleteAccount()">
+    Account löschen (bald möglich)
+  </button>
+</ion-content>

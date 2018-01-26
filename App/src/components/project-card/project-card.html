@@ -1,0 +1,75 @@
+<!-- Generated template for the ProjectCardComponent component -->
+<ion-card class="projectCard" [@cardAnimation]>
+  <ion-card-header>
+    <ion-row>
+      <ion-col col-10>
+        <h2>{{project?.title}}</h2>
+      </ion-col>
+      <ion-col col-2>
+        <h2>
+          <ion-icon name="people"></ion-icon> {{project?.memberAmount}}/{{project?.maxMemberAmount}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-badge class="tag" color="secondary" *ngFor="let tag of project?.tags">{{tag.title}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-card-header>
+  <ion-card-content class="noPaddingBottom">
+    <!--
+
+    <ion-row>
+      <ion-col col-6>
+        <button class="noPadding" ion-button icon-left clear small>
+          <ion-icon name="calendar"></ion-icon>
+          <div>01.01.2018</div>
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button class="noPadding" ion-button left icon-left clear small>
+          <ion-icon name="pin"></ion-icon>
+          <div *ngIf="project?.location">{{project?.location.name}}</div>
+          <div *ngIf="!project?.location">Global</div>
+        </button>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-badge class="tag" color="secondary" *ngFor="let tag of project?.tags">{{tag.title}}</ion-badge>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="project?.author?.profilepicture">
+      </ion-avatar>
+      <p>{{project?.author?.firstname}} {{project?.author?.lastname}}</p>
+    </ion-item>
+
+  -->
+
+    <ion-list>
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="project?.author?.profilepicture">
+        </ion-avatar>
+        <span>{{project?.author?.firstname}} {{project?.author?.lastname}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" item-start></ion-icon>Startet am 22.10.2017</ion-item>
+      <ion-item>
+        <ion-icon name="pin" item-start></ion-icon>
+        <span *ngIf="project?.location">{{project?.location?.name}}</span>
+        <span *ngIf="!project?.location">Global</span>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="cash" item-start></ion-icon>
+        <span *ngIf="project?.payment.paid">Paid</span>
+        <span *ngIf="!project?.payment.paid">Unpaid</span>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

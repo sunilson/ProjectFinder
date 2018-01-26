@@ -1,0 +1,39 @@
+<!--
+  Generated template for the IntroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content>
+
+  <ion-slides pager="true">
+
+    <ion-slide>
+      <h1>Willkommen zu ProjectFinder!</h1>
+      <p>Erstelle deine eigenen Projekte...</p>
+      <img src="assets/imgs/slide_1.png" />
+    </ion-slide>
+
+    <ion-slide>
+      <p>Suche nach Projekten anderer...</p>
+      <img src="assets/imgs/slide_2.png" />
+    </ion-slide>
+
+    <ion-slide>
+      <ion-row>
+        <ion-col>
+          <p>und bewerbe dich für diese!</p>
+          <img src="assets/imgs/slide_3.png" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="secondary" (click)="this.navCtrl.pop()">Jetzt starten</button>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

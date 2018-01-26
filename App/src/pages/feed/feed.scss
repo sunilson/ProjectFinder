@@ -1,0 +1,12 @@
+page-feed {
+  .small {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .boldText {
+    font-weight: bold
+  }
+  #mainContent {
+    background: color($colors, list_background);
+  }
+}
