@@ -25,7 +25,7 @@ Project finder doesn't rely on services like Firebase, so almost everything is d
 
 <img src="https://media.giphy.com/media/3o7WIDOHvEjYlqyQMw/giphy.gif">
 
-When a user logs in he recieves an Access and a Refresh Token. The Access Token is valid for 30 minutes and can be refreshed with the Refresh Token. To validate the JWT Tokens and add the User to the request, Passport is used: <a href="passportjs.org">passportjs.org</a>
+When a user logs in he recieves an Access and a Refresh Token. The Access Token is valid for 30 minutes and can be refreshed with the Refresh Token. To validate the JWT Tokens and add the User to the request, Passport is used: <a href="passportjs.org">passportjs.org</a>. The app will silently try to refresh the access token if the server responds with a 401 Error. If that's not possible the user is logged out.
 
 <img src="https://dzone.com/storage/temp/4804973-flow-jwt-large.jpg" />
 
