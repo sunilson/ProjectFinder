@@ -23,7 +23,7 @@ Table of Contents
 
 Project finder doesn't rely on services like Firebase, so almost everything is done by the backend server. Authentication is handled via JWT Tokens.
 
-<img src="https://i.imgur.com/nfTPcjU.gifv" />
+<img src="https://media.giphy.com/media/l4pTf33KBCIFJ5ey4/giphy.gif" />
 
 When a user logs in he recieves an Access and a Refresh Token. The Access Token is valid for 30 minutes and can be refreshed with the Refresh Token. To validate the JWT Tokens and add the User to the request, Passport is used: <a href="passportjs.org">passportjs.org</a>
 
