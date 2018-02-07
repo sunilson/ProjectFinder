@@ -6,7 +6,7 @@ This app was written for a semester project for the FH Hagenberg, but it isn't f
 
 Table of Contents
 =================
-
+  * [Server and Database](#server-and-database)
   * [Authentication](#authentication)
      * [Social Login](#social-login)
      * [Server Side](#server-side)
@@ -18,6 +18,10 @@ Table of Contents
   * [Offline functionality](#offline-functionality)
   * [Search](#search)
   * [Notifications and Emails](#notifications-and-emails)
+  
+## Server and Database
+
+The server is created with NodeJS and the Express Framework which is used for the REST API. The database is a MongoDB.
 
 ## Authentication
 
@@ -37,7 +41,6 @@ Users can also register/login with a Google account. On their first login a new 
 ### Server-Side
 
 On the server the JWT Tokens are handled with <a href="http://www.passportjs.org/">PassportJS</a> and the NPM module <a href="https://www.npmjs.com/package/jsonwebtoken">jsonwebtoken</a>
-
 
 ## User Feed
 
@@ -66,14 +69,42 @@ Projects are the core of the application. Every user can create projects and app
 
 Every user can apply for a project. The author has then to accept or decline the application. A user can only apply once to a project.
 
+<img src="https://media.giphy.com/media/3o7WIrVXOANXiLXqes/giphy.gif" />
+
+### Accept or decline application
+
+The author can then view the application and either accept or decline it.
+
+<img src="https://media.giphy.com/media/3o7WIP5RUMbXlMvKeY/giphy.gif" />
+
 ### Closing and deleting
 
 When a project is closed no new applications can be made. Also the chat will be disabled and all existing applications are deleted.
 
 When a project is deleted all relations are removed also.
 
+<img src="https://media.giphy.com/media/3ohs4BSdSYIaxXzbIQ/giphy.gif" />
+
+### Project chat
+
+Every project offers a socket.io chat for its members. The socket.io connection is also secured via the Token authentification. 
+
+<img src="https://media.giphy.com/media/xThtakyTnmX5BEMXVC/giphy.gif" />
+
 ## Offline functionality
+
+The already downloaded data should be available when the user is offline. This is done with a local SqLite database. All data that is returned with a request is stored in that database. For that, the MongoDB structure had to be mapped to an SQL structure (Join tables instead of Refs, etc.) When a user makes a request, the data is loaded via RxJS from the local and the online repository. 
 
 ## Search
 
+The search feature is accomplished with the <a href="https://algolia.com">Algolia</a> online service. There the most important fields like title, description, coordinates, etc. are indexed and can be searched through queries, filters, etc. The resultset is then populated with data from the MongoDB.
+
+<img src="https://media.giphy.com/media/xUOwG0o301tYgz8L3q/giphy.gif" />
+
 ## Notifications and Emails
+
+Notifications about events like new applications or an application status change are sent out from the Node server via FCM. Every device stores its device token upon login in the MongoDB with the user ID, so the server can send notifications to that device.
+
+<img src="https://media.giphy.com/media/xUOwG5Yw9nhVwT1qik/giphy.gif" />
+
+Emails are sent out using the <a href="https://www.mailgun.com/">Mailgun</a> online service from the Node server. They are sent out for the user activation and the password reset. Those forms are rendered on the server with the <a href="http://olado.github.io/doT/index.html">doT.js</a> template engine.
